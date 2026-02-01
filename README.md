@@ -1,18 +1,18 @@
 ## Project Title
 
-GBDA302 Week 3 Example 1: Instructions Screen with Back button
+GBDA302 Week 3 side quest Heads or Tails game
 
 ---
 
 ## Authors
 
-Karen Cochrane and David Han
+Emily Sharpe -21074681
 
 ---
 
 ## Description
 
-This p5.js project demonstrates a simple multi-screen game structure using a state-based approach. The example includes a start screen, an instructions screen with a back button, a basic game screen, and win/lose outcome screens. The focus is on showing how to separate screens into different files, route input based on the current game state, and design simple UI elements such as buttons and keyboard controls.
+This p5.js project demonstrates a simple multi-screen game structure using a state-based approach. The game includes a start screen, an instructions screen with a back button, a basic game screen, and win/lose outcome screens. The focus is on showing how to separate screens into different files, route input based on the current game state, and design simple UI elements such as buttons and keyboard controls.
 
 ---
 
@@ -34,6 +34,6 @@ N/A
 
 ## GenAI
 
-The code was written by Dr. Karen Cochrane but she used GenAI to write the comments.
+The code was written by Dr. Karen Cochrane but she used GenAI to write the comments.I used GenAI to assit me on the page by page process in how to navigate the code threads between each screen and to demonstrate all the manual changes i needed to go in and make to turn the example intoa new heads to tails game.
 
 ---
