@@ -15,18 +15,28 @@
 // only when currentScreen === "win"
 function drawWin() {
   // Green-tinted background to communicate success
-  background(200, 255, 200);
+  background(60, 180, 90); // green background
 
-  fill(0);
+  fill(0); // white text
   textAlign(CENTER, CENTER);
 
   // Main success message
-  textSize(40);
-  text("You Win!", width / 2, 300);
+  textSize(42);
+  text("HEADS", width / 2, 280);
 
-  // Instruction text
-  textSize(20);
-  text("Click or press R to return to Start.", width / 2, 360);
+  textSize(28);
+  text("YOU WIN!", width / 2, 330);
+
+  const backBtn = {
+    x: width / 2,
+    y: 480,
+    w: 220,
+    h: 70,
+    label: "BACK",
+  };
+
+  drawWinButton(backBtn);
+  cursor(isHover(backBtn) ? HAND : ARROW);
 }
 
 // ------------------------------------------------------------
@@ -34,15 +44,29 @@ function drawWin() {
 // ------------------------------------------------------------
 // Any mouse click returns the player to the start screen
 function winMousePressed() {
-  currentScreen = "start";
+  const backBtn = { x: width / 2, y: 480, w: 220, h: 70 };
+
+  if (isHover(backBtn)) {
+    currentScreen = "start";
+  }
 }
 
 // ------------------------------------------------------------
 // Keyboard input for win screen
 // ------------------------------------------------------------
 // R is commonly used for “restart” in games
-function winKeyPressed() {
-  if (key === "r" || key === "R") {
-    currentScreen = "start";
-  }
+
+function drawWinButton({ x, y, w, h, label }) {
+  rectMode(CENTER);
+  noStroke();
+
+  const hover = isHover({ x, y, w, h });
+
+  fill(hover ? 180 : 0); // grey hover, white button
+  rect(x, y, w, h, 14);
+
+  fill(255); // white text
+  textSize(26);
+  textAlign(CENTER, CENTER);
+  text(label, x, y);
 }

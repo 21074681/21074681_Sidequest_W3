@@ -13,11 +13,10 @@
 // Keeping this in one object makes it easier to move,
 // resize, or restyle the button later.
 const gameBtn = {
-  x: 400, // x position (centre of the button)
-  y: 550, // y position (centre of the button)
-  w: 260, // width
-  h: 90, // height
-  label: "PRESS HERE", // text shown on the button
+  x: 400, // temporary value, will be updated in drawGame()
+  y: 450,
+  r: 120,
+  label: "FLIP COIN",
 };
 
 // ------------------------------
@@ -27,20 +26,17 @@ const gameBtn = {
 // when currentScreen === "game"
 function drawGame() {
   // Set background colour for the game screen
-  background(240, 230, 140);
+  background(80, 150, 255); // red background
 
-  // ---- Title and instructions text ----
-  fill(0); // black text
-  textSize(32);
+  fill(255); // white text
+  textSize(36);
   textAlign(CENTER, CENTER);
-  text("Game Screen", width / 2, 160);
+  text("Heads or Tails", width / 2, 160);
 
-  textSize(18);
-  text(
-    "Click the button (or press ENTER) for a random result.",
-    width / 2,
-    210,
-  );
+  textSize(22);
+  text("Press the coin to find out your fate.", width / 2, 220);
+
+  gameBtn.x = width / 2;
 
   // ---- Draw the button ----
   // We pass the button object to a helper function
@@ -49,7 +45,7 @@ function drawGame() {
   // ---- Cursor feedback ----
   // If the mouse is over the button, show a hand cursor
   // Otherwise, show the normal arrow cursor
-  cursor(isHover(gameBtn) ? HAND : ARROW);
+  cursor(dist(mouseX, mouseY, gameBtn.x, gameBtn.y) < gameBtn.r ? HAND : ARROW);
 }
 
 // ------------------------------
@@ -57,29 +53,19 @@ function drawGame() {
 // ------------------------------
 // This function is responsible *only* for drawing the button.
 // It does NOT handle clicks or game logic.
-function drawGameButton({ x, y, w, h, label }) {
-  rectMode(CENTER);
-
-  // Check if the mouse is hovering over the button
-  // isHover() is defined in main.js so it can be shared
-  const hover = isHover({ x, y, w, h });
+function drawGameButton({ x, y, r, label }) {
+  // Check hover using distance from centre
+  const hover = dist(mouseX, mouseY, x, y) < r;
 
   noStroke();
+  fill(hover ? 180 : 255); // grey hover, white coin
 
-  // Change button colour when hovered
-  // This gives visual feedback to the player
-  fill(
-    hover
-      ? color(180, 220, 255, 220) // lighter blue on hover
-      : color(200, 220, 255, 190), // normal state
-  );
+  // Draw coin
+  ellipse(x, y, r * 2, r * 2);
 
-  // Draw the button rectangle
-  rect(x, y, w, h, 14); // last value = rounded corners
-
-  // Draw the button text
-  fill(0);
-  textSize(28);
+  // Coin text
+  fill(255);
+  textSize(26);
   textAlign(CENTER, CENTER);
   text(label, x, y);
 }
@@ -91,7 +77,7 @@ function drawGameButton({ x, y, w, h, label }) {
 // only when currentScreen === "game"
 function gameMousePressed() {
   // Only trigger the outcome if the button is clicked
-  if (isHover(gameBtn)) {
+  if (dist(mouseX, mouseY, gameBtn.x, gameBtn.y) < gameBtn.r) {
     triggerRandomOutcome();
   }
 }

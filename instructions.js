@@ -12,23 +12,29 @@
 // only when currentScreen === "instr"
 function drawInstr() {
   // Light neutral background
-  background(240);
+  // Red background (matches start screen)
+  background(80, 150, 255);
 
   // ---- Screen title ----
-  fill(0);
+  fill(255); // white text
   textAlign(CENTER, TOP);
-  textSize(36);
-  text("Instructions", width / 2, 80);
+  textSize(42);
+  text("How to Play", width / 2, 80);
 
   // ---- Instruction text ----
   textSize(18);
 
   // \n creates a line break in the text
   // This is useful for simple multi-line instructions
-  const lines =
-    "Press the game button.\n" + "You have a chance to win or lose!";
-
-  text(lines, width / 2, 160);
+  textSize(22);
+  text(
+    "Go to the game screen.\n\n" +
+      "Press the coin.\n\n" +
+      "Heads = You Win\n\n" +
+      "Tails = You Lose",
+    width / 2,
+    220,
+  );
 
   // ---- Back button ----
   // This button lets the player return to the start screen
@@ -92,7 +98,7 @@ function drawInstrButton({ x, y, w, h, label }) {
   noStroke();
 
   // Subtle colour change on hover for visual feedback
-  fill(hover ? color(200, 200, 255, 200) : color(220, 220, 255, 170));
+  fill(hover ? 180 : 255); // grey hover, white button
 
   // Draw the button shape
   rect(x, y, w, h, 12);

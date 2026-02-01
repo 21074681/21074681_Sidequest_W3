@@ -12,13 +12,31 @@
 // currentScreen === "start"
 function drawStart() {
   // Background colour for the start screen
-  background(180, 225, 220); // soft teal background
+  background(255, 170, 200);
+
+  // ---- Blue polka dots ----
+  noStroke();
+  fill(80, 150, 255); // blue dots
+
+  for (let x = 0; x < width; x += 80) {
+    for (let y = 0; y < height; y += 80) {
+      ellipse(x + 50, y + 54, 20, 20);
+    }
+  }
+
+  // red background
 
   // ---- Title text ----
-  fill(30, 50, 60);
-  textSize(46);
+  fill(0); // black text
+  textSize(52); // bigger = more impact
+  textStyle(BOLD);
   textAlign(CENTER, CENTER);
-  text("Win or Lose", width / 2, 180);
+  text("Heads or Tails", width / 2, 180);
+  textStyle(NORMAL);
+
+  textSize(20);
+  fill(255);
+  text("Choose an option to begin", width / 2, 240);
 
   // ---- Buttons (data only) ----
   // These objects store the position/size/label for each button.
@@ -110,17 +128,15 @@ function drawButton({ x, y, w, h, label }) {
   // We also add a shadow using drawingContext (p5 lets you access the
   // underlying canvas context for effects like shadows).
   if (hover) {
-    fill(255, 200, 150, 220); // warm coral on hover
+    fill(180); // grey hover
 
-    // Shadow settings (only when hovered)
-    drawingContext.shadowBlur = 20;
-    drawingContext.shadowColor = color(255, 180, 120);
+    drawingContext.shadowBlur = 12;
+    drawingContext.shadowColor = color(120);
   } else {
-    fill(255, 240, 210, 210); // soft cream base
+    fill(255); // white button
 
-    // Softer shadow when not hovered
     drawingContext.shadowBlur = 8;
-    drawingContext.shadowColor = color(220, 220, 220);
+    drawingContext.shadowColor = color(150);
   }
 
   // Draw the rounded rectangle button

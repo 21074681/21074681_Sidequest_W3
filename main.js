@@ -73,11 +73,9 @@ function mousePressed() {
   // win.js           → winMousePressed()
   // lose.js          → loseMousePressed()
 
-  if (currentScreen === "start") startMousePressed();
-  else if (currentScreen === "instr") instrMousePressed();
-  else if (currentScreen === "game") gameMousePressed();
-  // The ?.() means “call this function only if it exists”
-  // This prevents errors if a screen doesn’t implement a handler.
+  if (currentScreen === "start") startMousePressed?.();
+  else if (currentScreen === "instr") instrMousePressed?.();
+  else if (currentScreen === "game") gameMousePressed?.();
   else if (currentScreen === "win") winMousePressed?.();
   else if (currentScreen === "lose") loseMousePressed?.();
 }
@@ -94,12 +92,15 @@ function keyPressed() {
   // win.js           → winKeyPressed()
   // lose.js          → loseKeyPressed()
 
-  if (currentScreen === "start") startKeyPressed();
-  else if (currentScreen === "instr") instrKeyPressed();
+  if (currentScreen === "start") startKeyPressed?.();
+  else if (currentScreen === "instr") instrKeyPressed?.();
   else if (currentScreen === "game") gameKeyPressed?.();
   else if (currentScreen === "win") winKeyPressed?.();
   else if (currentScreen === "lose") loseKeyPressed?.();
 }
+// Screen flow:
+// start → game → win/lose → start
+// start → instr → start
 
 // ------------------------------------------------------------
 // Shared helper function: isHover()
